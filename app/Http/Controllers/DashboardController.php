@@ -50,7 +50,7 @@ class DashboardController extends BaseController
 
 
         $topUser = DB::table('peminjaman')
-            ->select('user.name', 'user.id', DB::raw('count(*) as borrowed'))
+            ->select('user.id', DB::raw('count(*) as borrowed'))
             ->leftJoin('user', 'user.id', '=', 'peminjaman.user_id')
             ->where('peminjaman.status', '!=', config('constants.peminjaman.status.0'))
             ->where('peminjaman.status', '!=', config('constants.peminjaman.status.3'))
@@ -67,7 +67,7 @@ class DashboardController extends BaseController
             ->where('peminjaman.status', '!=', config('constants.peminjaman.status.0'))
             ->where('peminjaman.status', '!=', config('constants.peminjaman.status.3'))
             ->whereBetween('peminjaman.created_at', [$lastMonth, $today])
-            ->groupBy('category.id')
+            ->groupBy('category.category')
             ->get();
 
         // dd($topUser);
