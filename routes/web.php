@@ -15,12 +15,13 @@ require __DIR__ . '/general.php';
 // });
 
 // Admin & Member
+Route::get('/books', [DashboardController::class, 'showDashboard'])->middleware(['web'])->name('books');
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->middleware([EnsureIsAuthenticated::class])->name('dashboard');
 
 // admin
 Route::middleware([EnsureIsAdmin::class])->group(function () {
     // forced to use indonesian for path, since it's the most 'sound' ones
-    Route::get('/peminjaman', [AdminController::class, 'showPeminjamanPage'])->name('peminjaman');
+    // Route::get('/peminjaman', [AdminController::class, 'showPeminjamanPage'])->name('peminjaman');
 
     Route::get('/category', [AdminController::class, 'showCategoryPage'])->name('category');
     Route::post('/category', [AdminController::class, 'addCategory'])->name('category');
@@ -53,23 +54,23 @@ Route::middleware([EnsureIsAdmin::class])->group(function () {
 });
 
 // Member
-Route::prefix('book')->middleware([EnsureIsMember::class])->group(function () {
+Route::prefix('book')->middleware(['web'])->group(function () {
     Route::get('/detail/{id}', [DashboardController::class, 'showDetail'])->name('book.detail');
     
     Route::get('borrow/{id}', function ($id) {
         return redirect()->back();
     })->name('book.borrow');
-    Route::post('/borrow/{id}', [DashboardController::class, 'borrow'])->name('book.borrow');
+    // Route::post('/borrow/{id}', [DashboardController::class, 'borrow'])->name('book.borrow');
 
-    Route::get('/aktivitas', [DashboardController::class, 'showPeminjamanPage'])->name('user.peminjaman.list');
-    Route::post('/aktivitas/cancel', [DashboardController::class, 'cancelBook'])->name('user.peminjaman.cancel');
+    // Route::get('/aktivitas', [DashboardController::class, 'showPeminjamanPage'])->name('user.peminjaman.list');
+    // Route::post('/aktivitas/cancel', [DashboardController::class, 'cancelBook'])->name('user.peminjaman.cancel');
     // Route::post('/aktivitas/return', [DashboardController::class, 'returnBook'])->name('user.peminjaman.return');
 
     // Route::get('/aktivitas/return', function() {
     //     return redirect()->route('user.peminjaman.list');
     // })->name('user.peminjaman.return');
 
-    Route::get('/aktivitas/cancel', function() {
-        return redirect()->route('user.peminjaman.list');
-    })->name('user.peminjaman.cancel');
+    // Route::get('/aktivitas/cancel', function() {
+    //     return redirect()->route('user.peminjaman.list');
+    // })->name('user.peminjaman.cancel');
 });

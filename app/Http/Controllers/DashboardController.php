@@ -104,7 +104,7 @@ class DashboardController extends BaseController
                 ], 'LIKE', $searchQueryParam . '%')
                 ->paginate(8)->onEachSide(-1);
         } else {
-            $paginator = Book::paginate(8)->onEachSide(-1);
+            $paginator = Book::latest()->paginate(8)->onEachSide(-1);
         }
 
         // Get the S3 URL from the environment

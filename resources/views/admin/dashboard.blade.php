@@ -31,26 +31,25 @@
         <div class="app-content"> <!--begin::Container-->
             <div class="container-fluid"> <!--begin::Row-->
                 <div class="row">
-                    <div class="col"> <!--begin::Small Box Widget 1-->
+                    {{-- <div class="col"> <!--begin::Small Box Widget 1-->
                         <div class="small-box text-bg-warning">
                             <div class="inner">
                                 <h3>{{ $general['request'] }}</h3>
                                 <p>Request Peminjaman Baru</p>
                             </div>
                         </div> <!--end::Small Box Widget 1-->
-                    </div> <!--end::Col-->
-                    <div class="col"> <!--begin::Small Box Widget 3-->
+                    </div> <!--end::Col--> --}}
+                    {{-- <div class="col"> <!--begin::Small Box Widget 3-->
                         <div class="small-box text-bg-primary">
                             <div class="inner">
                                 <h3>{{ $general['borrowed'] }}</h3>
                                 <p>Buku Dipinjam</p>
                             </div>
                         </div> <!--end::Small Box Widget 3-->
-                    </div> <!--end::Col-->
-                    <div class="col"> <!--begin::Small Box Widget 2-->
+                    </div> <!--end::Col--> --}}
+                    {{-- <div class="col"> <!--begin::Small Box Widget 2-->
                         <div class="small-box text-bg-success">
                             <div class="inner">
-                                {{-- <h3>53<sup class="fs-5">%</sup></h3> --}}
                                 <h3>{{ $general['accepted'] }}</h3>
                                 <p>Peminjaman Buku Sukses</p>
                             </div>
@@ -63,7 +62,7 @@
                                 <p>Buku Hilang</p>
                             </div>
                         </div> <!--end::Small Box Widget 4-->
-                    </div> <!--end::Col-->
+                    </div> <!--end::Col--> --}}
                 </div>
 
                 <div class="row">

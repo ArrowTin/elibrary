@@ -111,11 +111,11 @@
                                                 id="publishing_year" required value="{{ $book->publishing_year }}">
                                         </div>
 
-                                        <div class="col mb-3">
+                                        {{-- <div class="col mb-3">
                                             <label for="stock" class="form-label">Stok</label>
                                             <input type="number" name="stock" class="form-control" id="stock"
                                                 value="{{ $book->stock }}">
-                                        </div>
+                                        </div> --}}
 
                                     </div>
 
@@ -155,17 +155,27 @@
                                             <div class="invalid-feedback">Please select a valid tag.</div>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mt-3">
+                                                <input type="file" accept="application/pdf" class="form-control" name="pdf"
+                                                    id="pdf" value="{{ $book->pdf }}">
+                                                <label class="input-group-text" for="pdf">Upload Buku</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="col-auto">
                                     <img id="imagePreview" style="height: 400px; width: 250px; object-fit: contain;"
-                                        src="{{ env('COVER_PATH') . $book->cover }}" alt="cover preview">
+                                        src="{{asset(env('COVER_PATH') . $book->cover )}}" alt="cover preview">
                                     <div class="input-group mt-3">
                                         <input type="file" accept="image/*" class="form-control" name="cover"
                                             id="cover" value="{{ $book->cover }}">
                                         <label class="input-group-text" for="cover">Upload</label>
                                     </div>
                                 </div>
+                                
                             </div>
                             <button type="submit" class="mt-2 btn btn-primary">Ubah data Buku</button>
                         </form>

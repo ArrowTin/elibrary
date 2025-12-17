@@ -45,6 +45,7 @@
                                 <tr>
                                     <th>isbn</th>
                                     <th>Cover</th>
+                                    <th>File</th>
                                     <th>Judul</th>
                                     <th>Penulis</th>
                                     <th>Penerbit</th>
@@ -59,6 +60,11 @@
                                     <tr>
                                         <td> {{ $book->isbn }} </td>
                                         <td> <img src="{{ $book->cover }}" width="80px" alt="cover"> </td>
+                                        <td> 
+                                            <a href="{{ asset('storage/' . $book->pdf) }}" target="_blank">
+                                                Preview PDF
+                                            </a>
+                                        </td>
                                         <td> {{ $book->title }} </td>
                                         <td> {{ $book->author }} </td>
                                         <td> {{ $book->publisher }} </td>

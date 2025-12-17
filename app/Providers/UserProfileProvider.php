@@ -12,7 +12,7 @@ class UserProfileProvider {
     }
 
     function isAdmin(): bool {
-        $role = Auth::user()->role;
+        $role = Auth::user()?->role;
         return strtolower($role) == 'a';
     }
 }

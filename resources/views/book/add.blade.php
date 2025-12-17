@@ -111,10 +111,10 @@
                                                 id="publishing_year" required>
                                         </div>
 
-                                        <div class="col mb-3">
+                                        {{-- <div class="col mb-3">
                                             <label for="stock" class="form-label">Stok</label>
                                             <input type="number" name="stock" class="form-control" id="stock">
-                                        </div>
+                                        </div> --}}
 
                                     </div>
 
@@ -147,6 +147,15 @@
 
                                             </select>
                                             <div class="invalid-feedback">Please select a valid tag.</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group mt-3">
+                                                <input type="file" accept="application/pdf" class="form-control" name="pdf"
+                                                    id="pdf" required>
+                                                <label class="input-group-text" for="pdf">Upload Buku</label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

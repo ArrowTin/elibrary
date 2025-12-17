@@ -30,7 +30,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-3">
-                            <img src="{{ $book->cover }}" class="img-fluid" style="object-fit: cover;">
+                            <img src="{{ asset(env('COVER_PATH')) . $book->cover }}" class="img-fluid" style="object-fit: cover;">
                         </div>
                         <div class="col-auto col-lg-9">
                             <h5>Informasi Buku</h5>
@@ -81,10 +81,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                    <form action="{{ route('book.borrow', base64_encode($book->id)) }}" method="POST">
+                    {{-- <form action="{{ route('book.borrow', base64_encode($book->id)) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-primary">Pinjam</button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
         </div>
@@ -100,11 +100,15 @@
         <div class="row justify-content-start" style="margin-top: 28px;">
             <div class="col-auto me-3">
                 <div class="d-flex flex-column mb-3">
-                    <img src="{{ $book->cover }}" style="object-fit: cover; width: 18rem;">
-                    <button
+                    <img src="{{ asset($book->cover) }}" style="object-fit: cover; width: 18rem;">
+                    <a style="width: 100%; background-color: #6499E9; border-radius: 8px; margin-top: 24px; font-size: 16px;"
+                    class="btn btn-primary" style="urbanist-semibold" href="{{ asset('storage/' . $book->pdf) }}" target="_blank">
+                        Lihat Buku
+                    </a>
+                    {{-- <button
                         style="width: 100%; background-color: #6499E9; border-radius: 8px; margin-top: 24px; font-size: 16px;"
                         class="btn btn-primary" style="urbanist-semibold" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">Pinjam Buku</button>
+                        data-bs-target="#staticBackdrop">Lihat Buku</button> --}}
 
                     {{-- <form action="{{ route('book.borrow', base64_encode($book->id)) }}" method="POST">
                         @csrf

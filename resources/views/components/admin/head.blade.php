@@ -32,9 +32,9 @@
         @yield('content')
 
         <footer class="app-footer"> <!--begin::To the end-->
-            <div class="float-end d-none d-sm-inline">SMA Muhammadiyah 7 Surabaya.</div> <!--end::To the end-->
+            <div class="float-end d-none d-sm-inline">{{env('APP_NAME')}}</div> <!--end::To the end-->
             <!--begin::Copyright--> <strong>
-                Copyright &copy; 2024&nbsp;
+                Copyright &copy; {{date('Y')}}&nbsp;
                 
             </strong>
             All rights reserved.

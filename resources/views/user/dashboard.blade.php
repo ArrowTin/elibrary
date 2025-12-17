@@ -36,16 +36,16 @@
                         Kategori Buku
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('dashboard') }}">Semua</a></li>
+                        <li><a class="dropdown-item" href="{{ route('books') }}">Semua</a></li>
                         @foreach ($categories as $category)
-                            <li><a class="dropdown-item" href="{{ route('dashboard', ['category' => $category->id]) }}">{{ $category->category }}</a></li>
+                            <li><a class="dropdown-item" href="{{ route('books', ['category' => $category->id]) }}">{{ $category->category }}</a></li>
                         @endforeach
                     </ul>
                 </div>
             </div>
 
             <div class="col-sm-4">
-                <form style="height: 48px;" class="input-group" action="{{ route('dashboard') }}">
+                <form style="height: 48px;" class="input-group" action="{{ route('books') }}">
                     <input type="text" class="form-control" placeholder="Cari Judul Buku,Penulis atau Penerbit"
                     aria-label="Cari Judul Buku,Penulis atau Penerbit" name="search" aria-describedby="book-searchbox">
                     <button type="submit" class="input-group-text" id="book-searchbox">

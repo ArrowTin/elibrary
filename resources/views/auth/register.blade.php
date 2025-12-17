@@ -9,7 +9,7 @@
                     <div style="display: grid;" class="text-center">
                         <span class="amaranth-regular" style="color: black; font-size: 32px;">Selamat Datang</span>
                         <span class="amaranth-regular" style="color: black; font-size: 32px;">di <span
-                                class="amaranth-regular" style="color: #6499E9;">SMAM7</span> Library</span>
+                                class="amaranth-regular" style="color: #6499E9;">{{env('SCHOOL_NAME')}}</span> Library</span>
 
                         <span class="urbanist-medium" style="margin-top: 16px; color: #BDBDBD; font-size: 16px;">Masuk untuk
                             pinjam buku yang kamu inginkan</span>

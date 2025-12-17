@@ -26,6 +26,7 @@ class Book extends Model
         'isbn',
         'language',
         'stock',
+        'pdf',
     ];
 
     /**

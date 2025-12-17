@@ -36,6 +36,7 @@ class AdminController extends BaseController
             'description' => ['required', 'string'],
             'publisher' => ['required', 'string', 'max:255'],
             'cover' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+            'pdf' => ['required', 'file', 'mimes:pdf', 'max:20480'],
             'publishing_year' => ['required', 'integer', 'not_in:0'],
             'isbn' => ['required', 'string', 'max:13'],
             'language' => ['nullable', 'string', 'max:30'],
@@ -45,13 +46,18 @@ class AdminController extends BaseController
         $imageName = time() . '.' . $request->cover->extension();
         $image = $request->file('cover');
         $image->storeAs('public/covers', $imageName);
+        
+        $pdfName = time() . '.' . $request->pdf->extension();
+        $pdf = $request->file('pdf');
+        $pdf->storeAs('public/pdfs', $pdfName);
 
         $book = Book::create([
             'title' => $request->title,
             'author' => $request->author,
             'description' => $request->description,
             'publisher' => $request->publisher,
-            'cover' => $imageName,
+            'cover' => 'covers/'.$imageName,
+            'pdf' => 'pdfs/'.$pdfName,
             'publishing_year' => $request->publishing_year,
             'isbn' => $request->isbn,
             'language' => $request->language
@@ -86,7 +92,9 @@ class AdminController extends BaseController
     {
         if ($userProfileProvider->isAdmin()) {
             $book = Book::findOrFail($request->id);
-            Storage::delete('public/covers/' . $book->cover);
+            Storage::delete('public/' . $book->cover);
+            Storage::delete('public/' . $book->pdf);
+
             $book->delete();
 
             return redirect()->route('book.list')->with(['success' => 'Data Berhasil Dihapus!']);
@@ -122,7 +130,17 @@ class AdminController extends BaseController
             $image->storeAs('public/covers', $imageName);
 
             // delete cover after cover updated
-            Storage::delete('public/covers/' . $book->cover);
+            Storage::delete('public/' . $book->cover);
+        }
+
+        $pdfName = $book->pdf;
+        if (($request->pdf != null && $request->pdf != '') && $book->pdf != $request->pdf) {
+            $pdfName = time() . '.' . $request->pdf->extension();
+            $pdf = $request->file('pdf');
+            $pdf->storeAs('public/pdfs', $pdfName);
+
+            // delete pdf after pdf updated
+            Storage::delete('public/' . $book->cover);
         }
 
         // do update
@@ -131,10 +149,11 @@ class AdminController extends BaseController
             'author' => $request->author,
             'description' => $request->description,
             'publisher' => $request->publisher,
-            'cover' => $imageName,
+            'cover' => 'covers/'.$imageName,
+            'pdf' => 'pdfs/'.$pdfName,
             'publishing_year' => $request->publishing_year,
             'isbn' => $request->isbn,
-            'stock' => $request->stock,
+            // 'stock' => $request->stock,
             'language' => $request->language
         ]);
         $book->categories()->sync($request->categories);

@@ -122,10 +122,10 @@
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
         <!--begin::Brand Link--> <a href=" {{ route('dashboard') }} " class="brand-link">
-            <!--begin::Brand Image--> <img src="/img/icon/ic_logo_smam7.png" alt="SMA Muhamamdiyah 7 Logo"
+            <!--begin::Brand Image--> <img src="" alt="logo"
                 class="brand-image opacity-75 shadow">
             <!--end::Brand Image-->
-            <!--begin::Brand Text--> <span class="brand-text fw-light">Perpus Digital SMAM 7</span>
+            <!--begin::Brand Text--> <span class="brand-text fw-light">{{env('APP_NAME')}}</span>
             <!--end::Brand Text-->
         </a>
         <!--end::Brand Link-->
@@ -149,11 +149,11 @@
                                 <i class="nav-icon bi bi-dot"></i>
                                 <p>Dashboard</p>
                             </a> </li>
-                        <li class="nav-item"> <a href=" {{ route('peminjaman') }} "
+                        {{-- <li class="nav-item"> <a href=" {{ route('peminjaman') }} "
                                 class="nav-link {{ Request::routeIs('peminjaman') ? 'active' : '' }}">
                                 <i class="nav-icon bi bi-dot"></i>
                                 <p>Peminjaman</p>
-                            </a> </li>
+                            </a> </li> --}}
                     </ul>
                 </li>
 
