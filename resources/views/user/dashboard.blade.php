@@ -73,7 +73,7 @@
                                 {{ $book->author }}.</p>
                             <a href="{{ route('book.detail', ['id' => base64_encode(strval($book->id))]) }}"
                                 class="urbanis-semibold btn btn-primary"
-                                style="background-color: #6499E9; border: none; border-radius: 4px; color: white; font-size: 16px;">Pinjam</a>
+                                style="background-color: #6499E9; border: none; border-radius: 4px; color: white; font-size: 16px;">Lihat</a>
                         </div>
                     </div>
                 @endforeach

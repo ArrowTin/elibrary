@@ -60,11 +60,98 @@
         }
     </style>
 
+<style>
+    body {
+        padding-bottom: 72px; /* ruang untuk bottom nav mobile */
+    }
+
+    /* ===== Bottom Navbar Mobile ===== */
+    @media (max-width: 767.98px) {
+        .navbar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            padding: 8px 0 !important;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .navbar-brand,
+        .navbar-toggler {
+            display: none !important;
+        }
+
+        .navbar-collapse {
+            display: flex !important;
+        }
+
+        .navbar-nav,
+        .navbar-nav + div {
+            flex-direction: row !important;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        .navbar .nav-link {
+            padding: 6px 8px !important;
+            font-size: 12px !important;
+            text-align: center;
+        }
+
+        .nav-icon {
+            display: block;
+            font-size: 20px;
+        }
+    }
+</style>
+
+
     @yield('style')
 </head>
 
 <body>
-    @yield('content')
-</body>
+    <!-- KONTEN ASLI -->
+    <div id="mobile-only-content">
+        @yield('content')
+    </div>
+
+    <!-- PESAN NON MOBILE -->
+    <div id="desktop-warning" class="d-none">
+        <div class="d-flex align-items-center justify-content-center vh-100 text-center px-4">
+            <div>
+                <h2 class="amaranth-regular mb-3">Akses Ditolak</h2>
+                <p class="urbanist-medium text-secondary">
+                    Akses gunakan perangkat <strong>seluler</strong> anda
+                </p>
+            </div>
+        </div>
+    </div>
+
+<script>
+    function isMobileDevice() {
+        return (
+            /Android|iPhone|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+            || window.innerWidth <= 768
+        );
+    }
+
+    function checkDevice() {
+        const mobileContent = document.getElementById('mobile-only-content');
+        const desktopWarning = document.getElementById('desktop-warning');
+
+        if (isMobileDevice()) {
+            mobileContent.classList.remove('d-none');
+            desktopWarning.classList.add('d-none');
+        } else {
+            mobileContent.classList.add('d-none');
+            desktopWarning.classList.remove('d-none');
+        }
+    }
+
+    window.addEventListener('load', checkDevice);
+    window.addEventListener('resize', checkDevice);
+</script>
+
 
 </html>

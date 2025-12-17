@@ -29,10 +29,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col">
                             <img src="{{ asset(env('COVER_PATH')) . $book->cover }}" class="img-fluid" style="object-fit: cover;">
                         </div>
-                        <div class="col-auto col-lg-9">
+                        <div class="col">
                             <h5>Informasi Buku</h5>
                             <table class="table-modal">
                                 <tbody class="urbanist-semibold" style="font-size: 16px;">
@@ -93,14 +93,18 @@
     {{-- CONTAINER --}}
     <div class="container" style="margin-top: 50px; padding-bottom: 48px;">
         <span class="align-items-center justify-content-between" style="color: #BDBDBD; font-size: 16px;"><a
-                href="{{ route('dashboard') }}" style="text-decoration: none;color: #BDBDBD;">Koleksi Buku</a> <img
+                href="{{ route('books') }}" style="text-decoration: none;color: #BDBDBD;">Koleksi Buku</a> <img
                 src="/img/icon/ic_chevron_right.webp" height="24px" width="24px"> <span style="color: #6499E9;">Detail
                 Buku</span></span>
 
-        <div class="row justify-content-start" style="margin-top: 28px;">
-            <div class="col-auto me-3">
+        <div class="d-flex flex-column align-items-center mb-3" style="margin-top: 28px;">
+            <div class="col me-3">
                 <div class="d-flex flex-column mb-3">
-                    <img src="{{ asset($book->cover) }}" style="object-fit: cover; width: 18rem;">
+                    <img 
+                    src="{{ asset($book->cover) }}"
+                    class="mb-3"
+                    style="object-fit: cover; width: 18rem;"
+                >
                     <a style="width: 100%; background-color: #6499E9; border-radius: 8px; margin-top: 24px; font-size: 16px;"
                     class="btn btn-primary" style="urbanist-semibold" href="{{ asset('storage/' . $book->pdf) }}" target="_blank">
                         Lihat Buku
