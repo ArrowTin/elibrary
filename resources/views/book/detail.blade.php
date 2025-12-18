@@ -215,13 +215,12 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
     
-                <div class="modal-body p-0" style="height:80vh">
-                    <iframe
-                        src="{{ route('books.read', $book->id) }}"
-                        width="100%"
-                        height="100%"
-                        style="border:none;"
-                    ></iframe>
+                <div class="modal-body p-0">
+                    <embed
+                    src="{{ route('books.read', $book->id) }}"
+                    type="application/pdf"
+                    width="100%"
+                    height="600px">
                 </div>
                 
     
