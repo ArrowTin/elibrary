@@ -131,6 +131,7 @@ class AdminController extends BaseController
 
             // delete cover after cover updated
             Storage::delete('public/' . $book->cover);
+            $imageName= 'covers/'.$imageName;
         }
 
         $pdfName = $book->pdf;
@@ -141,6 +142,7 @@ class AdminController extends BaseController
 
             // delete pdf after pdf updated
             Storage::delete('public/' . $book->cover);
+            $pdfName = 'pdfs/'.$pdfName;
         }
 
         // do update
@@ -149,8 +151,8 @@ class AdminController extends BaseController
             'author' => $request->author,
             'description' => $request->description,
             'publisher' => $request->publisher,
-            'cover' => 'covers/'.$imageName,
-            'pdf' => 'pdfs/'.$pdfName,
+            'cover' => $imageName,
+            'pdf' => $pdfName,
             'publishing_year' => $request->publishing_year,
             'isbn' => $request->isbn,
             // 'stock' => $request->stock,
