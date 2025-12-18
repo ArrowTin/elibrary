@@ -47,7 +47,7 @@ Route::middleware([EnsureIsAdmin::class])->group(function () {
     Route::post('/listBook/delete', [AdminController::class, 'deleteBook'])->name('book.delete');
     Route::get('/listBook/delete', function () {
         return redirect()->route('book.list');
-    })->name('book.delete');
+    });
 
     Route::get('/peminjaman/update', [AdminController::class, 'showPeminjamanPage'])->name('peminjaman.update');
     Route::post('/peminjaman/update', [AdminController::class, 'peminjamanUpdate']);
