@@ -215,12 +215,15 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
     
-                <div class="ratio ratio-16x9 mt-4">
+                <div class="modal-body p-0" style="height:80vh">
                     <iframe
                         src="{{ route('books.read', $book->id) }}"
-                        allowfullscreen>
-                    </iframe>
+                        width="100%"
+                        height="100%"
+                        style="border:none;"
+                    ></iframe>
                 </div>
+                
     
             </div>
         </div>

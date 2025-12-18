@@ -29,7 +29,7 @@ class DashboardController extends BaseController
 
         return response()->file($path, [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline'
+            'Content-Disposition' => 'inline filename="'.env('COVER_PATH').asset($book->pdf).'"'
         ]);
 }
 
