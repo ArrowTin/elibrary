@@ -24,17 +24,17 @@ Route::middleware([EnsureIsAdmin::class])->group(function () {
     // Route::get('/peminjaman', [AdminController::class, 'showPeminjamanPage'])->name('peminjaman');
 
     Route::get('/category', [AdminController::class, 'showCategoryPage'])->name('category');
-    Route::post('/category', [AdminController::class, 'addCategory'])->name('category.store');
+    Route::post('/category', [AdminController::class, 'addCategory']);
 
     Route::post('/category/update', [AdminController::class, 'updateCategory'])->name('category.update');
     Route::get('/category/update', function () {
         return redirect()->route('category');
-    })->name('category.update');
+    });
 
     Route::post('/category/delete', [AdminController::class, 'deleteCategory'])->name('category.delete');
     Route::get('/category/delete', function () {
         return redirect()->route('category');
-    })->name('category.delete');
+    });
 
     Route::get('/addBook', [AdminController::class, 'showAddBookPage'])->name('book.add');
     Route::post('/addBook', [AdminController::class, 'addBook']);
