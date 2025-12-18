@@ -217,11 +217,11 @@
     
                 <div class="modal-body p-0" style="height:80vh">
                     <iframe
-                        src="{{ route('books.read', $book->id) }}"
+                        src="{{ asset('storage/' . $book->pdf) }}"
                         width="100%"
                         height="100%"
-                        style="border:none;"
-                    ></iframe>
+                        style="border:none;">
+                    </iframe>
                 </div>
                 
     
