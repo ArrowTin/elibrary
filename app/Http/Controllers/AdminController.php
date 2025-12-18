@@ -124,7 +124,7 @@ class AdminController extends BaseController
 
         // check whether need to update image
         $imageName = $book->cover;
-        if (($request->cover != null && $request->cover != '') && $book->cover != $request->cover) {
+        if (($request->cover != null && $request->cover != '') && $book->cover != $request->cover && $request->hasFile('cover')) {
             $imageName = time() . '.' . $request->cover->extension();
             $image = $request->file('cover');
             $image->storeAs('public/covers', $imageName);
@@ -134,7 +134,7 @@ class AdminController extends BaseController
         }
 
         $pdfName = $book->pdf;
-        if (($request->pdf != null && $request->pdf != '') && $book->pdf != $request->pdf) {
+        if (($request->pdf != null && $request->pdf != '') && $book->pdf != $request->pdf && $request->hasFile('pdf')) {
             $pdfName = time() . '.' . $request->pdf->extension();
             $pdf = $request->file('pdf');
             $pdf->storeAs('public/pdfs', $pdfName);
