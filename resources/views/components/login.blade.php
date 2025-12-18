@@ -128,30 +128,6 @@
         </div>
     </div>
 
-<script>
-    function isMobileDevice() {
-        return (
-            /Android|iPhone|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
-            || window.innerWidth <= 768
-        );
-    }
-
-    function checkDevice() {
-        const mobileContent = document.getElementById('mobile-only-content');
-        const desktopWarning = document.getElementById('desktop-warning');
-
-        if (isMobileDevice()) {
-            mobileContent.classList.remove('d-none');
-            desktopWarning.classList.add('d-none');
-        } else {
-            mobileContent.classList.add('d-none');
-            desktopWarning.classList.remove('d-none');
-        }
-    }
-
-    window.addEventListener('load', checkDevice);
-    window.addEventListener('resize', checkDevice);
-</script>
 
 
 </html>
