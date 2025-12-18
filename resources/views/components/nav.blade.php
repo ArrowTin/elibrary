@@ -2,7 +2,7 @@
     <!-- LOGO (Desktop only) -->
     <a class="navbar-brand d-none d-md-flex" href="{{ url('/') }}">
         <div class="d-flex align-items-center">
-            <img src="/img/icon/ic_logo.webp" height="60" class="me-2">
+            <img src="{{asset('/img/icon/ic_logo.webp')}}" height="60" class="me-2">
             <div>
                 <div class="amaranth-regular" style="font-size:24px;color:#6499E9">
                     {{ config('app.school_name') }}

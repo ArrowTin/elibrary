@@ -12,14 +12,14 @@
                 <span style="color: #6499E9; margin-top: 0px">Tanpa</span> Batas
             </div>
             <p class="urbanist-medium mt-4" style="font-color: #7F7F7F;">
-                SMAM7 library adalah website yang menyediakan akses peminjaman atau pengembalian materi bacaan dan sumber
-                pengetahuan. SMAM7 library hadir untuk memudahkan pembelajaran dan eksplorasi pengetahuan.
+                {{env('APP_NAME')}} library adalah website yang menyediakan akses peminjaman atau pengembalian materi bacaan dan sumber
+                pengetahuan. {{env('APP_NAME')}} library hadir untuk memudahkan pembelajaran dan eksplorasi pengetahuan.
             </p>
 
-            <a href="{{route('dashboard')}}" style="background-color: #6499E9; margin-top: 80px; font-size: 16px;" class="btn btn-primary" style="urbanist-semibold">Mulai Sekarang</a>
+            <a href="{{route('books')}}" style="background-color: #6499E9; margin-top: 80px; font-size: 16px;" class="btn btn-primary" style="urbanist-semibold">Mulai Sekarang</a>
         </div>
         <div class="col-sm-6">
-            <img class="img-fluid" src="/img/cover/side_illustration.webp" alt="illustration">
+            <img class="img-fluid" src="{{asset("/img/cover/side_illustration.webp")}}" alt="illustration">
         </div>
     </div>
 </div>

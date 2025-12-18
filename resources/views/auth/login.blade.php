@@ -60,7 +60,7 @@
 
         <!-- IMAGE (HIDDEN ON MOBILE) -->
         <div class="col-md-6 d-none d-md-flex align-items-center justify-content-center bg-light">
-            <img src="/img/cover/cover.webp"
+            <img src="{{asset('/img/cover/cover.webp')}}"
                 class="img-fluid"
                 style="max-height: 90vh;"
                 alt="Login">
