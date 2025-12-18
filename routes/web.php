@@ -60,6 +60,10 @@ Route::prefix('book')->middleware(['web'])->group(function () {
     Route::get('borrow/{id}', function ($id) {
         return redirect()->back();
     })->name('book.borrow');
+    
+    Route::get('/{id}/read', [DashboardController::class, 'read'])
+    ->name('books.read');
+
     // Route::post('/borrow/{id}', [DashboardController::class, 'borrow'])->name('book.borrow');
 
     // Route::get('/aktivitas', [DashboardController::class, 'showPeminjamanPage'])->name('user.peminjaman.list');

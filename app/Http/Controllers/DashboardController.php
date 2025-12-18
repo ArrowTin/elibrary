@@ -16,6 +16,23 @@ use Illuminate\Support\Facades\DB;
 
 class DashboardController extends BaseController
 {
+
+    public function read($id)
+    {
+        $book = Book::findOrFail($id);
+
+        $path = storage_path('app/public/' . $book->pdf);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline'
+        ]);
+}
+
     function showDashboard(Request $request, UserProfileProvider $UserProfileProvider)
     {
         if ($UserProfileProvider->isAdmin()) {

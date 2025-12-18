@@ -137,11 +137,11 @@
                  class="book-cover mb-3"
                  style="max-width: 280px;">
 
-            <a href="{{ asset('storage/' . $book->pdf) }}"
-               target="_blank"
-               class="btn btn-primary btn-book mt-3">
+            <button class="btn btn-primary btn-book mt-3"
+                    data-bs-toggle="modal"
+                    data-bs-target="#pdfModal">
                 Lihat Buku
-            </a>
+            </button>
         </div>
 
         {{-- DETAIL --}}
@@ -205,5 +205,27 @@
 
         </div>
     </div>
+
+    <div class="modal fade" id="pdfModal" tabindex="-1">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+    
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ $book->title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+    
+                <div class="modal-body p-0">
+                    <iframe
+                        src="{{ route('books.read', $book->id) }}"
+                        style="width:100%; height:80vh;"
+                        frameborder="0">
+                    </iframe>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
 </div>
 @endsection
