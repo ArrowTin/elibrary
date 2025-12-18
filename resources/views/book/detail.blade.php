@@ -186,10 +186,10 @@
                         <td>Bahasa</td>
                         <td>{{ $book->language }}</td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td>Stok</td>
                         <td>{{ $book->stock }}</td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td>Kategori</td>
                         <td>
