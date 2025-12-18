@@ -217,7 +217,7 @@
     
                 <div class="ratio ratio-16x9 mt-4">
                     <iframe
-                        src="{{ route('books.pdf', $book->id) }}"
+                        src="{{ route('books.read', $book->id) }}"
                         allowfullscreen>
                     </iframe>
                 </div>
