@@ -1,54 +1,145 @@
 @extends('components.head')
 
+@section('style')
+<style>
+    /* =====================
+       HEADER
+    ====================== */
+    .contact-title {
+        font-size: 40px;
+        color: #000;
+    }
+
+    .contact-subtitle {
+        font-size: 20px;
+        color: #7F7F7F;
+    }
+
+    /* =====================
+       CARD
+    ====================== */
+    .contact-card {
+        padding: 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.06);
+        transition: transform .2s ease, box-shadow .2s ease;
+        height: 100%;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0px 8px 18px rgba(0,0,0,0.12);
+    }
+
+    .contact-card img {
+        height: 40px;
+    }
+
+    .contact-label {
+        font-size: 20px;
+        color: #1746A2;
+        margin-top: 16px;
+    }
+
+    .contact-text {
+        font-size: 16px;
+        color: #7F7F7F;
+    }
+
+    /* =====================
+       BACKGROUND
+    ====================== */
+    .contact-bg {
+        background-color: #DAE9FF;
+        padding: 80px 0 160px;
+    }
+
+    /* =====================
+       MOBILE
+    ====================== */
+    @media (max-width: 768px) {
+        .contact-title {
+            font-size: 28px;
+        }
+
+        .contact-subtitle {
+            font-size: 16px;
+        }
+
+        .contact-bg {
+            padding: 60px 0 80px;
+        }
+    }
+</style>
+@endsection
+
 @section('content')
-    @include('components.nav')
+@include('components.nav')
 
-    <div class="text-center mt-5">
-        <span class="amaranth-regular" style="color: black; font-size: 40px;">Kontak Kami</span>
-        <br />
-        <span class="urbanist-regular" style="color: #7F7F7F;font-size: 20px;margin-top: 8px;">Hubungi salah satu dibawah ini
-            jika ada kendala
-            dan butuh bantuan</span>
+{{-- ===================== HEADER ===================== --}}
+<div class="contact-bg">
+    <div class="container text-center">
+        <h1 class="amaranth-regular contact-title">
+            Kontak Kami
+        </h1>
+        <p class="urbanist-regular contact-subtitle mt-2">
+            Hubungi salah satu di bawah ini jika ada kendala dan butuh bantuan
+        </p>
     </div>
+</div>
 
-    <div style="position: absolute; z-index: 1; top: 60%; width: 100%;transform: translate(0%, -50%);">
-        <div class="row justify-content-md-center"
-            style="position: relative; width: 75%; left: 50%;transform: translate(-50%);">
-            <div class="col">
-                <div class="card position-relative top-50 start-50 translate-middle" style="padding: 16px; cursor: pointer; box-shadow: 0px 4px 10px #00000010">
-                    <div class="card-body" style="display:grid;">
-                        <img src="{{asset('/img/icon/ic_location.webp')}}" height="40px" />
-                        <span class="urbanist-semibold"
-                            style="font-size: 20px; color: #1746A2; margin-top: 24px;">Lokasi</span>
-                        <span class="amaranth-regular" style="font-size: 16px; color: #7F7F7F; margin-top: 4px;">Jl. Raya Sutorejo
-                            No.98-100</span>
+{{-- ===================== CONTACT CARDS ===================== --}}
+<div class="container" style="margin-top:-120px;">
+    <div class="row g-4 justify-content-center">
+
+        {{-- LOKASI --}}
+        <div class="col-12 col-md-4">
+            <div class="card contact-card text-center">
+                <div class="card-body">
+                    <img src="{{ asset('/img/icon/ic_location.webp') }}">
+                    <div class="urbanist-semibold contact-label">
+                        Lokasi
                     </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card position-relative top-50 start-50 translate-middle" style="padding: 16px; cursor: pointer; box-shadow: 0px 4px 10px #00000010">
-                    <div class="card-body" style="display:grid;">
-                        <img src="{{asset('/img/icon/ic_whatsapp.webp')}}" height="40px" />
-                        <span class="urbanist-semibold"
-                            style="font-size: 20px; color: #1746A2; margin-top: 24px;">Whatsapp</span>
-                        <span class="amaranth-regular" style="font-size: 16px; color: #7F7F7F; margin-top: 4px;">Chat dengan admin perpustakaan</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card position-relative top-50 start-50 translate-middle" style="padding: 16px; cursor: pointer; box-shadow: 0px 4px 10px #00000010">
-                    <div class="card-body" style="display:grid;">
-                        <img src="{{asset('/img/icon/ic_gmail.webp')}}" height="40px" />
-                        <span class="urbanist-semibold"
-                            style="font-size: 20px; color: #1746A2; margin-top: 24px;">Email</span>
-                        <span class="amaranth-regular" style="font-size: 16px; color: #7F7F7F; margin-top: 4px;">hubungi admin melalui email</span>
+                    <div class="amaranth-regular contact-text mt-1">
+                        Jl. Raya Sutorejo No.98-100
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    {{-- BACKGROUND --}}
-    <div style="position: absolute; z-index: -99; top: 0; left: 0; width: 100%; height: 60%; background-color: #DAE9FF;">
+        {{-- WHATSAPP --}}
+        <div class="col-12 col-md-4">
+            <div class="card contact-card text-center">
+                <div class="card-body">
+                    <img src="{{ asset('/img/icon/ic_whatsapp.webp') }}">
+                    <div class="urbanist-semibold contact-label">
+                        WhatsApp
+                    </div>
+                    <div class="amaranth-regular contact-text mt-1">
+                        Chat dengan admin perpustakaan
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- EMAIL --}}
+        <div class="col-12 col-md-4">
+            <div class="card contact-card text-center">
+                <div class="card-body">
+                    <img src="{{ asset('/img/icon/ic_gmail.webp') }}">
+                    <div class="urbanist-semibold contact-label">
+                        Email
+                    </div>
+                    <div class="amaranth-regular contact-text mt-1">
+                        Hubungi admin melalui email
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
+</div>
+
 @endsection
