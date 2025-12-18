@@ -49,7 +49,7 @@
                     <input type="text" class="form-control" placeholder="Cari Judul Buku,Penulis atau Penerbit"
                     aria-label="Cari Judul Buku,Penulis atau Penerbit" name="search" aria-describedby="book-searchbox">
                     <button type="submit" class="input-group-text" id="book-searchbox">
-                        <img src="/img/icon/ic_search.png" width="24px" height="24px" alt="search">
+                        <img src="{{asset('/img/icon/ic_search.png')}}" width="24px" height="24px" alt="search">
                     </button>
                 </form>
             </div>
