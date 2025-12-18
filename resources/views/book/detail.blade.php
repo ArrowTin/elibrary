@@ -99,7 +99,7 @@
 
         <div class="d-flex flex-column align-items-center mb-3" style="margin-top: 28px;">
             <div class="col me-3">
-                <div class="d-flex flex-column mb-3">
+                <div class="d-flex flex-column mb-3 row">
                     <img 
                     src="{{ asset($book->cover) }}"
                     class="mb-3"
