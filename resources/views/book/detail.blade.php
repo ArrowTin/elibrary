@@ -94,7 +94,7 @@
     <div class="container" style="margin-top: 50px; padding-bottom: 48px;">
         <span class="align-items-center justify-content-between" style="color: #BDBDBD; font-size: 16px;"><a
                 href="{{ route('books') }}" style="text-decoration: none;color: #BDBDBD;">Koleksi Buku</a> <img
-                src="/img/icon/ic_chevron_right.webp" height="24px" width="24px"> <span style="color: #6499E9;">Detail
+                src="{{asset('/img/icon/ic_chevron_right.webp')}}" height="24px" width="24px"> <span style="color: #6499E9;">Detail
                 Buku</span></span>
 
         <div class="d-flex flex-column align-items-center mb-3" style="margin-top: 28px;">
