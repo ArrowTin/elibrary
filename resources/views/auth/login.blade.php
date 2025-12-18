@@ -1,4 +1,4 @@
-@extends('components.head')
+@extends('components.login')
 
 @section('content')
 <div class="container-fluid min-vh-100">
