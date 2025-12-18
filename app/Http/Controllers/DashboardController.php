@@ -21,17 +21,17 @@ class DashboardController extends BaseController
     {
         $book = Book::findOrFail($id);
 
-        $path = storage_path('app/public/' . $book->pdf);
+            $path = storage_path('app/public/' . $book->pdf);
 
-        if (!file_exists($path)) {
-            abort(404);
-        }
+            if (!file_exists($path)) {
+                abort(404);
+            }
 
-        return response()->file($path, [
-            'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'inline filename="'.env('COVER_PATH').asset($book->pdf).'"'
-        ]);
-}
+            return response()->file($path, [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'inline filename="'.basename(env('COVER_PATH').$book->pdf).'"'
+            ]);
+    }
 
     function showDashboard(Request $request, UserProfileProvider $UserProfileProvider)
     {
