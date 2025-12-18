@@ -215,7 +215,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
     
-                <div class="modal-body p-4" style="height:80vh">
+                <div class="modal-body p-0" style="height:80vh">
                     <iframe  
                     src="https://docs.google.com/gview?url={{ urlencode(asset('storage/' . $book->pdf)) }}&embedded=true" 
                     style="width:100%; height:80vh;" 
