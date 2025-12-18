@@ -1,203 +1,209 @@
 @extends('components.head')
 
 @section('style')
-    <style>
-        .table-modal {
-            table-layout: fixed;
-            width: 100%;
+<style>
+    /* =====================
+       GLOBAL
+    ====================== */
+    td {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        vertical-align: top;
+    }
+
+    .book-cover {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+    .book-title {
+        font-size: 52px;
+        line-height: 1.2;
+    }
+
+    .btn-book {
+        width: 100%;
+        background-color: #6499E9;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+
+    /* =====================
+       MOBILE
+    ====================== */
+    @media (max-width: 768px) {
+        .book-title {
+            font-size: 28px;
         }
 
-        td {
-            max-lines: 1;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+        .detail-container {
+            padding: 0 12px;
         }
-    </style>
+    }
+</style>
 @endsection
 
 @section('content')
-    @include('components.nav')
-    {{-- MODAL --}}
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Peminjaman Buku</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col">
-                            <img src="{{ asset(env('COVER_PATH')) . $book->cover }}" class="img-fluid" style="object-fit: cover;">
-                        </div>
-                        <div class="col">
-                            <h5>Informasi Buku</h5>
-                            <table class="table-modal">
-                                <tbody class="urbanist-semibold" style="font-size: 16px;">
-                                    <tr>
-                                        <td>Nama Penulis</td>
-                                        <td> {{ $book->author }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Penerbit</td>
-                                        <td> {{ $book->publisher }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tahun Terbit</td>
-                                        <td> {{ $book->publishing_year }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Bahasa</td>
-                                        <td> {{ $book->language }} </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kategori</td>
-                                        <td>
-                                            <div class="row">
-                                                @foreach ($categories as $key => $value)
-                                                    <div class="col-auto" style="padding: 0px 0px 0px 10px;">
-                                                        <span class="badge text-bg-primary"> {{ $value->category }} </span>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <hr class="hr" />
-                    <div class="row">
-                        <div class="col">
-                            <div class="alert alert-warning" role="alert">
-                                <b>Mohon Diperhatikan!!</b><br/>
-                                Maksimal peminjaman buku adalah <b>7 Hari</b> sejak proses peminjaman telah dikonfirmasi oleh petugas perpustakaan. 
-                                <br/><br/>Pastikan petugas perpustakaan berada ditempat saat mengembalikan buku bacaan. Terima kasih
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                    {{-- <form action="{{ route('book.borrow', base64_encode($book->id)) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Pinjam</button>
-                    </form> --}}
-                </div>
+@include('components.nav')
+
+{{-- ===================== MODAL ===================== --}}
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Peminjaman Buku</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-        </div>
-    </div>
 
-    {{-- CONTAINER --}}
-    <div class="container" style="margin-top: 50px; padding-bottom: 48px;">
-        <span class="align-items-center justify-content-between" style="color: #BDBDBD; font-size: 16px;"><a
-                href="{{ route('books') }}" style="text-decoration: none;color: #BDBDBD;">Koleksi Buku</a> <img
-                src="{{asset('/img/icon/ic_chevron_right.webp')}}" height="24px" width="24px"> <span style="color: #6499E9;">Detail
-                Buku</span></span>
+            <div class="modal-body">
+                <div class="row g-3">
+                    <div class="col-12 col-md-5 text-center">
+                        <img src="{{ asset(env('COVER_PATH')) . $book->cover }}"
+                             class="book-cover">
+                    </div>
 
-        <div class="d-flex flex-column align-items-center mb-3" style="margin-top: 28px;">
-            <div class="col me-3">
-                <div class="d-flex flex-column mb-3 row">
-                    <img 
-                    src="{{ asset($book->cover) }}"
-                    class="mb-3"
-                    style="object-fit: cover; width: 18rem;"
-                >
-                    <a style="width: 100%; background-color: #6499E9; border-radius: 8px; margin-top: 24px; font-size: 16px;"
-                    class="btn btn-primary" style="urbanist-semibold" href="{{ asset('storage/' . $book->pdf) }}" target="_blank">
-                        Lihat Buku
-                    </a>
-                    {{-- <button
-                        style="width: 100%; background-color: #6499E9; border-radius: 8px; margin-top: 24px; font-size: 16px;"
-                        class="btn btn-primary" style="urbanist-semibold" data-bs-toggle="modal"
-                        data-bs-target="#staticBackdrop">Lihat Buku</button> --}}
-
-                    {{-- <form action="{{ route('book.borrow', base64_encode($book->id)) }}" method="POST">
-                        @csrf
-                        <button 
-                            style="width: 100%; background-color: white; border: 1px solid #6499E9; border-radius: 8px; color: #6499E9; margin-top: 16px; font-size: 16px;"
-                            class="btn btn-primary" type="button" style="urbanist-semibold">Tambah ke Daftar Baca</button>
-                    </form> --}}
-                </div>
-            </div>
-            <div class="col ms-5">
-                <div class="d-flex flex-column mb-3 align-items-start">
-                    @if ($book->stock > 0)
-                        <span class="badge text-bg-success">Tersedia</span>
-                    @else
-                        <span class="badge text-bg-danger">Tidak tersedia</span>
-                    @endif
-
-                    <span class="amaranth-regular"
-                        style="margin: 16px 0 0 0; font-size: 52px; color: black; line-height: 1.2;"> {{ $book->title }}
-                    </span>
-
-                    <span class="urbanist-regular mt-4" style="font-size: 18px;"> {{ $book->description }} </span>
-
-                    {{-- DIVIDER --}}
-                    <div style="width: 100%; border: 1px solid #D8D8D8; margin: 32px 0 20px 0;"></div>
-
-
-                    <style>
-                        table {
-                            border-collapse: collapse;
-                        }
-
-                        table tbody {
-                            border-top: 15px solid transparent;
-                        }
-
-                        table tr {
-                            border-top: 16px solid transparent;
-                        }
-                    </style>
-
-
-                    <table style="width: 32rem;">
-                        <thead>
-                            <tr>
-                                <th class="amaranth-regular" style="font-size: 20px;">Informasi Buku</th>
-                            </tr>
-                        </thead>
-                        <tbody class="urbanist-semibold" style="font-size: 16px;">
-                            <tr>
-                                <td>Nama Penulis</td>
-                                <td> {{ $book->author }} </td>
-                            </tr>
-                            <tr>
-                                <td>Penerbit</td>
-                                <td> {{ $book->publisher }} </td>
-                            </tr>
-                            <tr>
-                                <td>Tahun Terbit</td>
-                                <td> {{ $book->publishing_year }} </td>
-                            </tr>
-                            <tr>
-                                <td>Bahasa</td>
-                                <td> {{ $book->language }} </td>
-                            </tr>
-                            <tr>
-                                <td>Stok Buku</td>
-                                <td> {{ $book->stock }} </td>
-                            </tr>
-                            <tr>
-                                <td>Kategori</td>
-                                <td>
-                                    <div class="row mb-2">
-                                        @foreach ($categories as $key => $value)
-                                            <div class="col-auto" style="padding: 0px 0px 0px 10px;">
-                                                <span class="badge text-bg-primary"> {{ $value->category }} </span>
-                                            </div>
+                    <div class="col-12 col-md-7">
+                        <h5>Informasi Buku</h5>
+                        <table class="table table-sm">
+                            <tbody class="urbanist-semibold">
+                                <tr>
+                                    <td>Penulis</td>
+                                    <td>{{ $book->author }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Penerbit</td>
+                                    <td>{{ $book->publisher }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Tahun</td>
+                                    <td>{{ $book->publishing_year }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Bahasa</td>
+                                    <td>{{ $book->language }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Kategori</td>
+                                    <td>
+                                        @foreach ($categories as $value)
+                                            <span class="badge text-bg-primary me-1 mb-1">
+                                                {{ $value->category }}
+                                            </span>
                                         @endforeach
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
+                <hr>
+
+                <div class="alert alert-warning mt-3">
+                    <strong>Mohon Diperhatikan!</strong><br>
+                    Maksimal peminjaman buku adalah <b>7 hari</b> sejak dikonfirmasi petugas.
+                    Pastikan petugas berada di tempat saat pengembalian.
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
             </div>
         </div>
     </div>
+</div>
+
+{{-- ===================== CONTENT ===================== --}}
+<div class="container detail-container mt-5 pb-5">
+
+    {{-- Breadcrumb --}}
+    <div class="mb-4 text-muted">
+        <a href="{{ route('books') }}" class="text-decoration-none text-muted">
+            Koleksi Buku
+        </a>
+        <img src="{{ asset('/img/icon/ic_chevron_right.webp') }}" width="20">
+        <span class="text-primary">Detail Buku</span>
+    </div>
+
+    <div class="row g-4 align-items-start">
+
+        {{-- COVER --}}
+        <div class="col-12 col-md-4 text-center">
+            <img src="{{ asset($book->cover) }}"
+                 class="book-cover mb-3"
+                 style="max-width: 280px;">
+
+            <a href="{{ asset('storage/' . $book->pdf) }}"
+               target="_blank"
+               class="btn btn-primary btn-book mt-3">
+                Lihat Buku
+            </a>
+        </div>
+
+        {{-- DETAIL --}}
+        <div class="col-12 col-md-8">
+
+            {{-- STATUS --}}
+            @if ($book->stock > 0)
+                <span class="badge text-bg-success">Tersedia</span>
+            @else
+                <span class="badge text-bg-danger">Tidak tersedia</span>
+            @endif
+
+            {{-- TITLE --}}
+            <h1 class="amaranth-regular book-title mt-3">
+                {{ $book->title }}
+            </h1>
+
+            {{-- DESCRIPTION --}}
+            <p class="urbanist-regular mt-3">
+                {{ $book->description }}
+            </p>
+
+            <hr>
+
+            {{-- INFO TABLE --}}
+            <h5 class="amaranth-regular mb-3">Informasi Buku</h5>
+            <table class="table">
+                <tbody class="urbanist-semibold">
+                    <tr>
+                        <td>Penulis</td>
+                        <td>{{ $book->author }}</td>
+                    </tr>
+                    <tr>
+                        <td>Penerbit</td>
+                        <td>{{ $book->publisher }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tahun Terbit</td>
+                        <td>{{ $book->publishing_year }}</td>
+                    </tr>
+                    <tr>
+                        <td>Bahasa</td>
+                        <td>{{ $book->language }}</td>
+                    </tr>
+                    <tr>
+                        <td>Stok</td>
+                        <td>{{ $book->stock }}</td>
+                    </tr>
+                    <tr>
+                        <td>Kategori</td>
+                        <td>
+                            @foreach ($categories as $value)
+                                <span class="badge text-bg-primary me-1 mb-1">
+                                    {{ $value->category }}
+                                </span>
+                            @endforeach
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
 @endsection
