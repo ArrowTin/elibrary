@@ -148,11 +148,11 @@
         <div class="col-12 col-md-8">
 
             {{-- STATUS --}}
-            @if ($book->stock > 0)
+            {{-- @if ($book->stock > 0)
                 <span class="badge text-bg-success">Tersedia</span>
             @else
                 <span class="badge text-bg-danger">Tidak tersedia</span>
-            @endif
+            @endif --}}
 
             {{-- TITLE --}}
             <h1 class="amaranth-regular book-title mt-3">

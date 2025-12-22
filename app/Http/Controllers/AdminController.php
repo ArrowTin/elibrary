@@ -38,7 +38,7 @@ class AdminController extends BaseController
             'cover' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
             'pdf' => ['required', 'file', 'mimes:pdf', 'max:20480'],
             'publishing_year' => ['required', 'integer', 'not_in:0'],
-            'isbn' => ['required', 'string', 'max:13'],
+            'isbn' => ['required', 'string', 'max:17'],
             'language' => ['nullable', 'string', 'max:30'],
             'categories' => ['']
         ]);

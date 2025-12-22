@@ -14,9 +14,6 @@
                     <div class="amaranth-regular fs-2">
                         di <span style="color:#6499E9">{{ env('SCHOOL_NAME') }}</span> Library
                     </div>
-                    <p class="urbanist-medium text-secondary mt-2">
-                        Masuk untuk pinjam buku yang kamu inginkan
-                    </p>
                 </div>
 
                 <!-- ERROR -->
